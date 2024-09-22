@@ -5,6 +5,7 @@ public class Logic {
     private int player;
     private int counter;
     private int[][] board;
+    private boolean gameOver;
 
     public Logic() {
 
@@ -15,20 +16,15 @@ public class Logic {
     }
 
     public void updateBoard(int x, int y){
-        if(isEmpty(x,y)){
-            System.out.println(x+" "+y);
-            System.out.println(board[x][y]);
-
+        if(!gameOver && isEmpty(x,y)){
+            System.out.println("clicked:"+x+" "+y);
             counter++;
             board[x][y] = player;
             player*=-1;
         }
         int curr_state = checkWin(x,y);
-        if(curr_state != 0){
-           gameover(curr_state);
-        }
-        else if(counter == 9) {
-            gameover(0);
+        if(curr_state != 0 || counter == 9){
+           gameOver = true;
         }
 
     }
@@ -55,10 +51,10 @@ public class Logic {
             i++;
         }
         int alexson2 = 0;
-        i = 2;
+        i = 0;
         for(int j = 2; j>=0; j--){
             alexson2+=board[i][j];
-            i--;
+            i++;
         }
         if(rowSum == 3 || colSum == 3 || alexson == 3 || alexson2 == 3){
             return 1;
@@ -68,11 +64,14 @@ public class Logic {
         }
         return 0;
     }
-    public int gameover(int winner){
-        return winner;
-    }
+
+
 
     public int getPlayer() {
         return player;
     }
+    public int getCounter(){
+        return counter;
+    }
+    public boolean getGameOver(){return gameOver;}
 }

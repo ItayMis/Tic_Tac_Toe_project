@@ -11,14 +11,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
-    Logic logic = new Logic();
+public class MainActivity extends AppCompatActivity implements Iview{
 
+    private Presenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        presenter = new Presenter(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -30,18 +32,30 @@ public class MainActivity extends AppCompatActivity {
         String clicked_id = getResources().getResourceEntryName(view.getId());
         int x = clicked_id.charAt(5) - '0';
         int y = clicked_id.charAt(6) - '0';
+        //move logic to presenter, give x and y
+        if (!presenter.getLogic().getGameOver()) {
+            TextView player_display = findViewById(R.id.player_display);
+            player_display.setText(String.valueOf(presenter.getLogic().getPlayer()));
 
-        logic.updateBoard(x, y);
-
-        TextView player_display = (TextView) findViewById(R.id.player_display);
-        player_display.setText(String.valueOf(logic.getPlayer()));
-
-        ImageView clicked_image= (ImageView) findViewById(view.getId());
-        int curr_player = logic.getPlayer();
-        if (curr_player == 1) {
-            clicked_image.setImageResource(R.drawable.blue_x);
-        } else if (curr_player == -1) {
-            clicked_image.setImageResource(R.drawable.blue_circle);
+            ImageView clicked_image = findViewById(view.getId());
+            int curr_player = presenter.getLogic().getPlayer();
+            if (curr_player == 1) {
+                clicked_image.setImageResource(R.drawable.blue_x);
+            } else if (curr_player == -1) {
+                clicked_image.setImageResource(R.drawable.blue_circle);
+            }
         }
+        presenter.getLogic().updateBoard(x, y);
+    }
+
+    @Override
+    public void updateBoard(int x, int y) {
+
+    }
+
+    @Override
+    public void displayMessage(String msg) {
+        TextView player_display = findViewById(R.id.player_display);
+        player_display.setText(msg);
     }
 }
