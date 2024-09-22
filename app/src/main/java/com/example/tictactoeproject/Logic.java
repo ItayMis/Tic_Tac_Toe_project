@@ -16,6 +16,9 @@ public class Logic {
 
     public void updateBoard(int x, int y){
         if(isEmpty(x,y)){
+            System.out.println(x+" "+y);
+            System.out.println(board[x][y]);
+
             counter++;
             board[x][y] = player;
             player*=-1;

@@ -30,21 +30,27 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:src="@drawable/blue_x"
+                />
 
             <ImageView
                 android:id="@+id/cell_01"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:src="@drawable/blue_x"
+                />
 
             <ImageView
                 android:id="@+id/cell_02"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:src="@drawable/blue_x"
+                />
         </TableRow>
 
         <TableRow>
@@ -54,21 +60,27 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:src="@drawable/blue_x"
+                />
 
             <ImageView
                 android:id="@+id/cell_11"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:src="@drawable/blue_x"
+                />
 
             <ImageView
                 android:id="@+id/cell_12"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:src="@drawable/blue_x"
+                />
         </TableRow>
 
         <TableRow>
@@ -79,14 +91,16 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"                 android:src="@drawable/blue_x"
+                />
 
             <ImageView
                 android:id="@+id/cell_21"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"                 android:src="@drawable/blue_x"
+                />
 
             <ImageView
                 android:id="@+id/cell_22"
@@ -94,7 +108,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:onClick="updateBoard"
-                android:padding="10dp" />
+                android:padding="10dp"                 android:src="@drawable/blue_x"
+                />
         </TableRow>
     </TableLayout>
 

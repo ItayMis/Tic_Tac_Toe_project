@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         int curr_player = logic.getPlayer();
         if (curr_player == 1) {
             clicked_image.setImageResource(R.drawable.blue_x);
-        } else {
+        } else if (curr_player == -1) {
             clicked_image.setImageResource(R.drawable.blue_circle);
         }
     }
