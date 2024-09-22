@@ -32,20 +32,18 @@ public class MainActivity extends AppCompatActivity implements Iview{
         String clicked_id = getResources().getResourceEntryName(view.getId());
         int x = clicked_id.charAt(5) - '0';
         int y = clicked_id.charAt(6) - '0';
-        //move logic to presenter, give x and y
-        if (!presenter.getLogic().getGameOver()) {
-            TextView player_display = findViewById(R.id.player_display);
-            player_display.setText(String.valueOf(presenter.getLogic().getPlayer()));
+        int curr_player = presenter.userMove(x, y);
+        if(!presenter.isGameOver()){
+        TextView player_display = findViewById(R.id.player_display);
+        player_display.setText(String.valueOf(presenter.getLogic().getPlayer()));
 
-            ImageView clicked_image = findViewById(view.getId());
-            int curr_player = presenter.getLogic().getPlayer();
-            if (curr_player == 1) {
-                clicked_image.setImageResource(R.drawable.blue_x);
-            } else if (curr_player == -1) {
-                clicked_image.setImageResource(R.drawable.blue_circle);
-            }
+        ImageView clicked_image = findViewById(view.getId());
+        if (curr_player == 1) {
+            clicked_image.setImageResource(R.drawable.blue_x);
+        } else if (curr_player == -1) {
+            clicked_image.setImageResource(R.drawable.blue_circle);
         }
-        presenter.getLogic().updateBoard(x, y);
+        }
     }
 
     @Override

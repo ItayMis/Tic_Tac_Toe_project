@@ -13,7 +13,11 @@ public class Presenter {
     public Logic getLogic(){
         return logic;
     }
-
-    //userMove
-    //checkWin or GameOver
+    public int userMove(int x, int y){
+        logic.updateBoard(x,y);
+        return  logic.getPlayer();
+    }
+    public boolean isGameOver(){
+        return logic.getGameOver();
+    }
 }
