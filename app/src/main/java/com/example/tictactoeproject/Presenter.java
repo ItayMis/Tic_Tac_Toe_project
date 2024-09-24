@@ -20,7 +20,11 @@ public class Presenter {
         return images[index];
     }
     public boolean isGameOver(){
-        return logic.getGameOver();
+        if(logic.getGameOver()){
+            endGame();
+            return true;
+        }
+        return false;
     }
 
     public void endGame(){
