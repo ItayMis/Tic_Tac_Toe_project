@@ -13,11 +13,17 @@ public class Presenter {
     public Logic getLogic(){
         return logic;
     }
-    public int userMove(int x, int y){
+    public String userMove(int x, int y){
+        String[] images = {"blue_circle","square","blue_x"};
         logic.updateBoard(x,y);
-        return  logic.getPlayer();
+        int index = logic.getPlayer() + 1;
+        return images[index];
     }
     public boolean isGameOver(){
         return logic.getGameOver();
+    }
+
+    public void endGame(){
+        logic.setPlayer(0);
     }
 }

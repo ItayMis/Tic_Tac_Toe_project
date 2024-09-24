@@ -3,6 +3,7 @@ package com.example.tictactoeproject;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -32,18 +33,20 @@ public class MainActivity extends AppCompatActivity implements Iview{
         String clicked_id = getResources().getResourceEntryName(view.getId());
         int x = clicked_id.charAt(5) - '0';
         int y = clicked_id.charAt(6) - '0';
-        int curr_player = presenter.userMove(x, y);
-        if(!presenter.isGameOver()){
-        TextView player_display = findViewById(R.id.player_display);
-        player_display.setText(String.valueOf(presenter.getLogic().getPlayer()));
+        String image_name = presenter.userMove(x, y);
+        displayMessage(String.valueOf(presenter.getLogic().getPlayer()));
 
         ImageView clicked_image = findViewById(view.getId());
-        if (curr_player == 1) {
-            clicked_image.setImageResource(R.drawable.blue_x);
-        } else if (curr_player == -1) {
-            clicked_image.setImageResource(R.drawable.blue_circle);
+        int imageResId = getResources().getIdentifier(image_name, "drawable", getPackageName());
+        clicked_image.setImageResource(imageResId);
+        clicked_image.setClickable(false);
+        if(presenter.isGameOver()){
+            presenter.endGame();
         }
-        }
+
+
+
+
     }
 
     @Override

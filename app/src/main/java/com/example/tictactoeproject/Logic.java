@@ -74,4 +74,8 @@ public class Logic {
         return counter;
     }
     public boolean getGameOver(){return gameOver;}
+
+    public void setPlayer(int player){
+        this.player = player;
+    }
 }
