@@ -9,7 +9,7 @@ public class Logic {
 
     public Logic() {
 
-        //1 = x, -1 = 0
+        //1 = x, -1 = o
         player = 1;
         counter = 0;
         board = new int[3][3];
@@ -17,7 +17,6 @@ public class Logic {
 
     public void updateBoard(int x, int y){
         if(!gameOver && isEmpty(x,y)){
-            System.out.println("clicked:"+x+" "+y);
             counter++;
             board[x][y] = player;
             player*=-1;
@@ -74,6 +73,8 @@ public class Logic {
         return counter;
     }
     public boolean getGameOver(){return gameOver;}
+
+
 
     public void setPlayer(int player){
         this.player = player;
