@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -23,8 +24,6 @@ public class MainActivity extends AppCompatActivity implements Iview{
         setContentView(R.layout.activity_main);
 
         presenter = new Presenter(this);
-        displayMessage(presenter.getTurnMsg());
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -50,24 +49,28 @@ public class MainActivity extends AppCompatActivity implements Iview{
             displayMessage(presenter.getWinMsg());
         }
 
-
-
-
     }
+
 
     public void restartGame(View view) {
         presenter.resetGame();
+        TableLayout tableLayout = findViewById(R.id.tableLayout);
 
-        ViewGroup parentLayout = findViewById(R.id.tableLayout);
-        for (int i = 0; i < parentLayout.getChildCount(); i++) {
-            View child = parentLayout.getChildAt(i);
-            if (child instanceof ImageView) {
-                ImageView imageView = (ImageView) child;
-                imageView.setImageResource(R.drawable.square);
-                //imageView.setOnClickListener(this); // Re-enable click listener
+        for (int i = 0; i < tableLayout.getChildCount(); i++) {
+            View child = tableLayout.getChildAt(i);
+            if (child instanceof TableRow) {
+                TableRow row = (TableRow) child;
+                for (int j = 0; j < row.getChildCount(); j++) {
+                    View cell = row.getChildAt(j);
+                    if (cell instanceof ImageView) {
+                        ImageView imageView = (ImageView) cell;
+                        imageView.setImageResource(R.drawable.square);
+                        imageView.setClickable(true);
+                        imageView.setOnClickListener(this::updateBoard);
+                    }
+                }
             }
         }
-
 
         displayMessage("New Game Started\n" + presenter.getTurnMsg());
     }
