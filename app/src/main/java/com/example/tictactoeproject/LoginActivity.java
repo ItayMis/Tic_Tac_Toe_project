@@ -27,11 +27,14 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        //FirebaseApp.initializeApp(this);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+        if(mAuth.getCurrentUser() != null){
+            //move to another activity
+        }
+        //FirebaseApp.initializeApp(this);
 
+        else{
         mAuth.signInWithEmailAndPassword("william.henry.harrison@example-pet-store.com", "password").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -43,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        }
 
     }
 
