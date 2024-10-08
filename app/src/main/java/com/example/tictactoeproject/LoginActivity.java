@@ -37,14 +37,13 @@ public class LoginActivity extends AppCompatActivity {
         if(mAuth.getCurrentUser() != null){
             //move to another activity
             System.out.println(mAuth.getCurrentUser().getUid());
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class); // Replace MainActivity.class with your desired activity
-            startActivity(intent);
-            finish();
+            changeActivity();
         }
 
 
 
     }
+
 
     public void onLogin(View view){
         String email = ((EditText) findViewById(R.id.email_input)).getText().toString();
@@ -57,9 +56,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    changeActivity();
                     System.out.println("Login Successful");
                     UserData u = new UserData(email, username, yearOfBirth);
                     db.collection("users").document(mAuth.getCurrentUser().getUid()).set(u);
+
                 } else {
                     System.out.println("Login Failed");
                     Exception e = task.getException();
@@ -73,6 +74,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    public void changeActivity(){
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class); // Replace MainActivity.class with your desired activity
+        startActivity(intent);
+        finish();
+
+    }
 
 
 
